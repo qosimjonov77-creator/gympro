@@ -26,37 +26,13 @@ ThemeData buildTheme() {
       filled: true,
       fillColor: Colors.white,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColors.line),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColors.line),
       ),
     ),
   );
-}
-
-/// Oq kartochka (hamma ekranda ishlatiladi)
-class AppCard extends StatelessWidget {
-  final Widget child;
-  final Color? color;
-  final EdgeInsets padding;
-  const AppCard({
-    super.key,
-    required this.child,
-    this.color,
-    this.padding = const EdgeInsets.all(18),
-  });
-
-  @override
-  Widget build(BuildContext context) => Container(
-        padding: padding,
-        decoration: BoxDecoration(
-          color: color ?? Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: AppColors.line),
-        ),
-        child: child,
-      );
 }

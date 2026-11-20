@@ -1,37 +1,33 @@
 import 'package:go_router/go_router.dart';
-import '../features/auth/login_screen.dart';
-import '../features/auth/gym_select_screen.dart';
-import '../features/dashboard/dashboard_screen.dart';
-import '../features/members/members_screen.dart';
-import '../features/members/member_profile_screen.dart';
-import '../features/sale/sale_screen.dart';
+import '../features/auth/auth_screens.dart';
+import '../features/home/home_screen.dart';
+import '../features/notifications/notifications_screen.dart';
+import '../features/payments/payments_screen.dart';
+import '../features/profile/profile_screen.dart';
+import '../features/scan/scan_screens.dart';
 import '../features/visits/visits_screen.dart';
-import '../features/visits/entrance_screen.dart';
-import '../features/finance/finance_screen.dart';
-import '../features/analytics/analytics_screen.dart';
-import '../features/settings/settings_screen.dart';
 import 'shell.dart';
 
 final router = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/splash',
   routes: [
-    GoRoute(path: '/login', builder: (_, __) => const LoginScreen()),
-    GoRoute(path: '/gyms', builder: (_, __) => const GymSelectScreen()),
-    GoRoute(path: '/entrance', builder: (_, __) => const EntranceScreen()),
+    GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
+    GoRoute(path: '/onboarding', builder: (context, state) => const OnboardingScreen()),
+    GoRoute(path: '/phone', builder: (context, state) => const PhoneScreen()),
+    GoRoute(path: '/sms', builder: (context, state) => SmsScreen(phone: state.uri.queryParameters['p'] ?? '')),
+    GoRoute(path: '/found', builder: (context, state) => FoundScreen(phone: state.uri.queryParameters['p'] ?? '')),
+    GoRoute(path: '/scan', builder: (context, state) => const ScanScreen()),
+    GoRoute(path: '/granted', builder: (context, state) => const GrantedScreen()),
+    GoRoute(path: '/denied', builder: (context, state) => const DeniedScreen()),
+    GoRoute(path: '/inside', builder: (context, state) => const InsideScreen()),
+    GoRoute(path: '/notifications', builder: (context, state) => const NotificationsScreen()),
     ShellRoute(
-      builder: (_, __, child) => AdminShell(child: child),
+      builder: (context, state, child) => MemberShell(child: child),
       routes: [
-        GoRoute(path: '/dashboard', builder: (_, __) => const DashboardScreen()),
-        GoRoute(path: '/members', builder: (_, __) => const MembersScreen()),
-        GoRoute(
-          path: '/members/:id',
-          builder: (_, s) => MemberProfileScreen(index: int.tryParse(s.pathParameters['id'] ?? '') ?? 0),
-        ),
-        GoRoute(path: '/sale', builder: (_, __) => const SaleScreen()),
-        GoRoute(path: '/visits', builder: (_, __) => const VisitsScreen()),
-        GoRoute(path: '/finance', builder: (_, __) => const FinanceScreen()),
-        GoRoute(path: '/analytics', builder: (_, __) => const AnalyticsScreen()),
-        GoRoute(path: '/settings', builder: (_, __) => const SettingsScreen()),
+        GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+        GoRoute(path: '/visits', builder: (context, state) => const VisitsScreen()),
+        GoRoute(path: '/payments', builder: (context, state) => const PaymentsScreen()),
+        GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()),
       ],
     ),
   ],
